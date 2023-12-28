@@ -9,19 +9,10 @@ const MoviesPage = () => {
   const [params, setParams] = useSearchParams({});
   const location = useLocation();
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault();
     const inputValue = event.currentTarget.elements.inputQuery.value;
     setParams({ query: inputValue });
-
-    if (inputValue) {
-      try {
-        const response = await fetchSearch(inputValue);
-        setMovies(response.results);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
   };
 
   const inputValue = params.get('query');
@@ -47,7 +38,7 @@ const MoviesPage = () => {
     <>
       <Form onSubmit={handleSubmit} className={styles.containerInput}>
         <InputGroup className={styles.myInput}>
-          <FormControl type="text" name="inputQuery" placeholder="Search" />
+          <FormControl type="text" name="inputQuery" placeholder="" />
           <Button
             className={styles.myButton}
             type="submit"
